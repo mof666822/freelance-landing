@@ -19,26 +19,23 @@ export function HeroSection({ title, subtitle, telegramHref }: HeroSectionProps)
       <Particles />
       <div className="relative z-10 mx-auto flex max-w-6xl flex-col items-start px-4 sm:px-6">
         <motion.h1
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="max-w-4xl text-balance text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl"
+          initial={false}
+          animate={{ y: 0 }}
+          className="max-w-4xl animate-in text-balance text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl"
+          style={{ animation: "fadeSlideUp 0.6s ease both" }}
         >
           {title}
         </motion.h1>
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.12 }}
+          initial={false}
           className="mt-5 max-w-2xl text-lg text-muted-foreground sm:text-xl"
+          style={{ animation: "fadeSlideUp 0.6s ease 0.12s both" }}
         >
           {subtitle}
         </motion.p>
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.22 }}
+        <div
           className="mt-8 flex flex-col gap-3 sm:flex-row"
+          style={{ animation: "fadeSlideUp 0.55s ease 0.22s both" }}
         >
           <Button asChild variant="neon" size="lg">
             <a href={telegramHref} target="_blank" rel="noopener noreferrer">
@@ -48,7 +45,7 @@ export function HeroSection({ title, subtitle, telegramHref }: HeroSectionProps)
           <Button asChild variant="outline" size="lg">
             <a href="#services">{t("ctaServices")}</a>
           </Button>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

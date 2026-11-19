@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 import { ServiceIcon } from "@/components/icons";
 import { ScaleCard } from "@/components/scale-card";
@@ -20,13 +19,12 @@ export function ServiceGrid({ services, telegramHref }: ServiceGridProps) {
   return (
     <div className="grid gap-10 overflow-visible py-12 sm:grid-cols-2 lg:grid-cols-3 lg:gap-12 lg:py-20">
       {services.map((service, index) => (
-        <motion.div
+        <div
           key={service.id}
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.4, delay: index * 0.05 }}
           className="overflow-visible"
+          style={{
+            animation: `fadeSlideUp 0.4s ease ${index * 0.05}s both`,
+          }}
         >
           <ScaleCard className="flex h-full min-h-[240px] flex-col bg-gradient-to-br from-white/10 to-transparent">
             <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-telegram/20 text-telegram">
@@ -46,7 +44,7 @@ export function ServiceGrid({ services, telegramHref }: ServiceGridProps) {
               </Button>
             </div>
           </ScaleCard>
-        </motion.div>
+        </div>
       ))}
     </div>
   );

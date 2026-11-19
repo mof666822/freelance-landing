@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/routing";
 import { ServiceIcon } from "@/components/icons";
@@ -27,26 +26,22 @@ export function CategoryCards({ sites, bots }: CategoryCardsProps) {
   return (
     <section id="services" className="relative z-10 overflow-visible py-10 sm:py-16">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.45 }}
+        <div
           className="mb-8"
+          style={{ animation: "fadeSlideUp 0.45s ease both" }}
         >
           <h2 className="text-3xl font-bold text-white sm:text-4xl">{t("whatIDo")}</h2>
           <p className="mt-2 text-muted-foreground">{t("whatIDoHint")}</p>
-        </motion.div>
+        </div>
 
         <div className="flex flex-col gap-10 overflow-visible py-16 md:flex-row md:gap-12 md:py-24">
           {items.map((item, index) => (
-            <motion.div
+            <div
               key={item.key}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.45, delay: index * 0.08 }}
               className="flex-1 overflow-visible"
+              style={{
+                animation: `fadeSlideUp 0.45s ease ${index * 0.08}s both`,
+              }}
             >
               <ScaleCard
                 href={`/${locale}/${item.key}`}
@@ -64,7 +59,7 @@ export function CategoryCards({ sites, bots }: CategoryCardsProps) {
                 </p>
                 <p className="mt-6 text-sm font-medium text-neon">{tCat("more")}</p>
               </ScaleCard>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

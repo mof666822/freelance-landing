@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 import { MessageCircle, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -20,11 +19,7 @@ export function ContactsFooter({ primary, secondary }: ContactsFooterProps) {
   return (
     <footer className="border-t border-white/10 py-12 sm:py-16">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
+        <div style={{ animation: "fadeSlideUp 0.4s ease both" }}>
           <h2 className="mb-6 text-3xl font-bold text-white">{t("contacts")}</h2>
           <div className="grid gap-4 sm:grid-cols-2">
             <Button asChild size="lg" className="h-14 text-base">
@@ -41,7 +36,7 @@ export function ContactsFooter({ primary, secondary }: ContactsFooterProps) {
             </Button>
           </div>
           <p className="mt-8 text-sm text-muted-foreground">{tFooter("rights")}</p>
-        </motion.div>
+        </div>
       </div>
     </footer>
   );

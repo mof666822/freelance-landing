@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 import { ExternalLink } from "lucide-react";
 import type { ExampleItem } from "@/lib/types";
@@ -16,23 +15,15 @@ export function ExamplesSection({ examples }: { examples: ExampleItem[] }) {
   return (
     <section className="py-10 sm:py-14">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <motion.h2
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-8 text-3xl font-bold text-white"
-        >
-          {t("examples")}
-        </motion.h2>
+        <h2 className="mb-8 text-3xl font-bold text-white">{t("examples")}</h2>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {examples.map((example, index) => (
-            <motion.article
+            <article
               key={example.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.06 }}
               className="overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-glass backdrop-blur-md"
+              style={{
+                animation: `fadeSlideUp 0.4s ease ${index * 0.06}s both`,
+              }}
             >
               <div className="relative aspect-[16/10] bg-black/40">
                 <Image
@@ -62,7 +53,7 @@ export function ExamplesSection({ examples }: { examples: ExampleItem[] }) {
                   </a>
                 ) : null}
               </div>
-            </motion.article>
+            </article>
           ))}
         </div>
       </div>
