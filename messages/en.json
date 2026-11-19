@@ -1,0 +1,70 @@
+{
+  "meta": {
+    "title": "Turnkey websites & Telegram Mini Apps",
+    "description": "I build websites and Telegram Mini Apps. Negotiable price, 50% USDT deposit. Message me on Telegram."
+  },
+  "nav": {
+    "services": "Services",
+    "ru": "RU",
+    "en": "EN"
+  },
+  "hero": {
+    "ctaTelegram": "Message on Telegram",
+    "ctaServices": "View services"
+  },
+  "sections": {
+    "whatIDo": "What I do",
+    "whatIDoHint": "Pick a direction — sub-services are inside",
+    "howToBuy": "How buying works",
+    "payment": "Payment",
+    "contacts": "Contacts",
+    "examples": "Work examples",
+    "openExample": "Open project"
+  },
+  "category": {
+    "back": "Back to home",
+    "discuss": "Discuss on Telegram",
+    "more": "Learn more →"
+  },
+  "footer": {
+    "rights": "Websites & Telegram Mini Apps"
+  },
+  "admin": {
+    "loginTitle": "Admin login",
+    "password": "Password",
+    "login": "Sign in",
+    "logout": "Sign out",
+    "save": "Save",
+    "saved": "Saved",
+    "error": "Save failed",
+    "hero": "Hero",
+    "categories": "Home cards",
+    "steps": "Buyer steps",
+    "services": "Sub-services",
+    "payment": "Payment",
+    "contacts": "Contacts",
+    "examples": "Work examples",
+    "addExample": "Add example",
+    "deleteExample": "Delete",
+    "editExample": "Edit",
+    "secondaryEmpty": "Secondary contact is empty — button 2 mirrors the first",
+    "titleRu": "Title (RU)",
+    "titleEn": "Title (EN)",
+    "subtitleRu": "Subtitle (RU)",
+    "subtitleEn": "Subtitle (EN)",
+    "descRu": "Description (RU)",
+    "descEn": "Description (EN)",
+    "labelRu": "Button label (RU)",
+    "labelEn": "Button label (EN)",
+    "url": "URL",
+    "icon": "Icon (lucide)",
+    "image": "Image",
+    "link": "Link (optional)",
+    "category": "Category",
+    "sites": "Websites",
+    "bots": "Bots",
+    "primaryContact": "Contact 1",
+    "secondaryContact": "Contact 2",
+    "clearSecondary": "Clear secondary contact"
+  }
+}

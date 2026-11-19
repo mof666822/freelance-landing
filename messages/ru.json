@@ -1,0 +1,70 @@
+{
+  "meta": {
+    "title": "Сайты и Telegram Mini Apps под ключ",
+    "description": "Делаю сайты и Telegram Mini Apps. Цена договорная, предоплата 50% в USDT. Пиши в Telegram."
+  },
+  "nav": {
+    "services": "Услуги",
+    "ru": "RU",
+    "en": "EN"
+  },
+  "hero": {
+    "ctaTelegram": "Написать в Telegram",
+    "ctaServices": "Смотреть услуги"
+  },
+  "sections": {
+    "whatIDo": "Что я делаю",
+    "whatIDoHint": "Выбери направление — внутри подробные подуслуги",
+    "howToBuy": "Инструкция для покупателя",
+    "payment": "Оплата",
+    "contacts": "Контакты",
+    "examples": "Примеры работ",
+    "openExample": "Открыть проект"
+  },
+  "category": {
+    "back": "Назад на главную",
+    "discuss": "Обсудить в Telegram",
+    "more": "Подробнее →"
+  },
+  "footer": {
+    "rights": "Сайты и Telegram Mini Apps"
+  },
+  "admin": {
+    "loginTitle": "Вход в админку",
+    "password": "Пароль",
+    "login": "Войти",
+    "logout": "Выйти",
+    "save": "Сохранить",
+    "saved": "Сохранено",
+    "error": "Ошибка сохранения",
+    "hero": "Hero",
+    "categories": "Карточки на главной",
+    "steps": "Шаги инструкции",
+    "services": "Подуслуги",
+    "payment": "Оплата",
+    "contacts": "Контакты",
+    "examples": "Примеры работ",
+    "addExample": "Добавить пример",
+    "deleteExample": "Удалить",
+    "editExample": "Редактировать",
+    "secondaryEmpty": "Второй контакт пуст — кнопка 2 дублирует первый",
+    "titleRu": "Заголовок (RU)",
+    "titleEn": "Заголовок (EN)",
+    "subtitleRu": "Подзаголовок (RU)",
+    "subtitleEn": "Подзаголовок (EN)",
+    "descRu": "Описание (RU)",
+    "descEn": "Описание (EN)",
+    "labelRu": "Текст кнопки (RU)",
+    "labelEn": "Текст кнопки (EN)",
+    "url": "URL",
+    "icon": "Иконка (lucide)",
+    "image": "Изображение",
+    "link": "Ссылка (опционально)",
+    "category": "Категория",
+    "sites": "Сайты",
+    "bots": "Боты",
+    "primaryContact": "Контакт 1",
+    "secondaryContact": "Контакт 2",
+    "clearSecondary": "Очистить второй контакт"
+  }
+}
