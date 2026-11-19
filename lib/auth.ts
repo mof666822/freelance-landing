@@ -5,13 +5,34 @@ import { timingSafeEqual } from "crypto";
 export const ADMIN_COOKIE = "admin_session";
 const SESSION_DAYS = 7;
 
+const FORBIDDEN_PASSWORDS = new Set([
+  "",
+  "change_me",
+  "password",
+  "admin",
+  "123456",
+  "secret",
+]);
+
+export function isAdminConfigured() {
+  const password = process.env.ADMIN_PASSWORD || "";
+  const jwtSecret = process.env.JWT_SECRET || "";
+  if (password.length < 12 || FORBIDDEN_PASSWORDS.has(password)) return false;
+  if (jwtSecret.length < 32 || jwtSecret === "dev-secret") return false;
+  if (jwtSecret === password) return false;
+  return true;
+}
+
 function getSecret() {
-  const secret = process.env.JWT_SECRET || process.env.ADMIN_PASSWORD || "dev-secret";
-  return new TextEncoder().encode(secret);
+  if (!isAdminConfigured()) {
+    throw new Error("Admin credentials are not configured");
+  }
+  return new TextEncoder().encode(process.env.JWT_SECRET!);
 }
 
 export function verifyPassword(input: string) {
-  const expected = process.env.ADMIN_PASSWORD || "change_me";
+  if (!isAdminConfigured()) return false;
+  const expected = process.env.ADMIN_PASSWORD!;
   const a = Buffer.from(input);
   const b = Buffer.from(expected);
   if (a.length !== b.length) return false;
@@ -28,6 +49,7 @@ export async function createSessionToken() {
 
 export async function verifySessionToken(token: string) {
   try {
+    if (!isAdminConfigured()) return false;
     const { payload } = await jwtVerify(token, getSecret());
     return payload.role === "admin";
   } catch {
@@ -36,6 +58,7 @@ export async function verifySessionToken(token: string) {
 }
 
 export async function isAdminAuthenticated() {
+  if (!isAdminConfigured()) return false;
   const token = cookies().get(ADMIN_COOKIE)?.value;
   if (!token) return false;
   return verifySessionToken(token);

@@ -1,14 +1,37 @@
 import { NextResponse } from "next/server";
 import { promises as fs } from "fs";
 import path from "path";
-import { isAdminAuthenticated } from "@/lib/auth";
+import { isAdminAuthenticated, isAdminConfigured } from "@/lib/auth";
 import { readContent, writeContent } from "@/lib/content";
+import { safeExternalUrl } from "@/lib/safe-url";
 import type { SiteContent } from "@/lib/types";
 
 export const runtime = "nodejs";
 
+function sanitizeContent(content: SiteContent): SiteContent {
+  const primaryUrl = safeExternalUrl(content.contacts.primary.url);
+  if (!primaryUrl) {
+    throw new Error("Invalid primary contact URL");
+  }
+  content.contacts.primary.url = primaryUrl;
+
+  if (content.contacts.secondary) {
+    const secondaryUrl = safeExternalUrl(content.contacts.secondary.url);
+    content.contacts.secondary = secondaryUrl
+      ? { ...content.contacts.secondary, url: secondaryUrl }
+      : null;
+  }
+
+  content.examples = content.examples.map((example) => ({
+    ...example,
+    link: example.link ? safeExternalUrl(example.link) || undefined : undefined,
+  }));
+
+  return content;
+}
+
 export async function GET() {
-  if (!(await isAdminAuthenticated())) {
+  if (!isAdminConfigured() || !(await isAdminAuthenticated())) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
   const content = await readContent();
@@ -16,7 +39,7 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-  if (!(await isAdminAuthenticated())) {
+  if (!isAdminConfigured() || !(await isAdminAuthenticated())) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
@@ -29,7 +52,7 @@ export async function POST(request: Request) {
       if (typeof raw !== "string") {
         return NextResponse.json({ error: "Missing content" }, { status: 400 });
       }
-      const content = JSON.parse(raw) as SiteContent;
+      const content = sanitizeContent(JSON.parse(raw) as SiteContent);
 
       const examplesDir = path.join(process.cwd(), "public", "examples");
       await fs.mkdir(examplesDir, { recursive: true });
@@ -58,7 +81,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ ok: true, content });
     }
 
-    const content = (await request.json()) as SiteContent;
+    const content = sanitizeContent((await request.json()) as SiteContent);
     await writeContent(content);
     return NextResponse.json({ ok: true, content });
   } catch (error) {

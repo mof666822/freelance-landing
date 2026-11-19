@@ -6,9 +6,17 @@ const intlMiddleware = createMiddleware(routing);
 
 export default function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  const adminPath = process.env.ADMIN_PATH || "admin-49b979002b3437bc";
+  const adminPath = process.env.ADMIN_PATH;
 
-  if (pathname === `/${adminPath}` || pathname.startsWith(`/${adminPath}/`)) {
+  // Never expose the internal /admin route directly.
+  if (pathname === "/admin" || pathname.startsWith("/admin/")) {
+    return new NextResponse("Not Found", { status: 404 });
+  }
+
+  if (
+    adminPath &&
+    (pathname === `/${adminPath}` || pathname.startsWith(`/${adminPath}/`))
+  ) {
     const url = request.nextUrl.clone();
     url.pathname = pathname.replace(`/${adminPath}`, "/admin");
     return NextResponse.rewrite(url);
@@ -16,7 +24,6 @@ export default function middleware(request: NextRequest) {
 
   if (
     pathname.startsWith("/api") ||
-    pathname.startsWith("/admin") ||
     pathname.startsWith("/_next") ||
     pathname.includes(".")
   ) {
